@@ -3,7 +3,6 @@
     console.log('asdf');
     var req = new XMLHttpRequest();
     var student = {
-        id: document.getElementById("id").value,
         name: document.getElementById("name").value,
         gender: document.getElementById("gender").value,
         dob: document.getElementById("dob").value,
