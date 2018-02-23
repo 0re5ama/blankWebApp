@@ -28,9 +28,9 @@ namespace BlankWebApp
             cmd.Parameters.Add("@address", SqlDbType.VarChar, 50).Value = ATTclassobj.address;
             cmd.Parameters.Add("@percentage", SqlDbType.Float, 50).Value = ATTclassobj.percentage;
             cmd.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
-            int eid = Int32.Parse(cmd.Parameters["@id"].Value.ToString());
             cmd.ExecuteNonQuery();
-            msg = "Saved successfully with id: " + eid;
+            int sid = Int32.Parse(cmd.Parameters["@id"].Value.ToString());
+            msg = "Saved successfully with id: " + sid;
             connection.Close();
             return msg;
         }
