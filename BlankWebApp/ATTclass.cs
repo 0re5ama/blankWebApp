@@ -12,6 +12,6 @@ namespace BlankWebApp
         public string gender { get; set; }
         public string dob { get; set; }
         public string address { get; set; }
-        public float? percentage { get; set; }
+        public double? percentage { get; set; }
     }
 }

@@ -10,14 +10,12 @@ namespace BlankWebApp
 {
     public class DLLclass
     {
+        string connString = "Data Source=.\\SQLEXPRESS;Initial Catalog=studentdb;Integrated Security=True";
         public string save(ATTclass ATTclassobj)
         {
+            SqlConnection connection = new SqlConnection(connString);
             string sp = "";
-            string connstring = "";
             string msg = "";
-            connstring = "Data Source =.\\SQLEXPRESS; Initial Catalog = studentdb; Integrated Security = True";
-            SqlConnection connection;
-            connection = new SqlConnection(connstring);
             sp = "dbo.save";
             connection.Open();
             SqlCommand cmd = new SqlCommand(sp, connection);
@@ -33,6 +31,34 @@ namespace BlankWebApp
             msg = "Saved successfully with id: " + sid;
             connection.Close();
             return msg;
+        }
+
+        public List<ATTclass> showAll()
+        {
+            SqlConnection connection = new SqlConnection(connString);
+            string sp = "dbo.showAll";
+            List<ATTclass> ATTlist = new List<ATTclass>();
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(sp, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader d_read = cmd.ExecuteReader();
+            if (d_read.HasRows)
+            {
+                while (d_read.Read())
+                {
+                    ATTclass ATTobj = new ATTclass();
+                    ATTobj.id = d_read.GetInt32(0);
+                    ATTobj.name = d_read.GetString(1);
+                    ATTobj.gender = d_read.GetString(2);
+                    ATTobj.dob = d_read[3].ToString();
+                    ATTobj.address = d_read.GetString(4);
+                    ATTobj.percentage = d_read.GetDouble(5);
+                    ATTlist.Add(ATTobj);
+                }
+            }
+            connection.Close();
+            d_read.Close();
+            return ATTlist;
         }
     }
 }
