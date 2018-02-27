@@ -50,7 +50,9 @@ function loadrec() {
             var headerRow = tableHeader.insertRow();
             for (key in resMsg[0]) {
                 var headCell = headerRow.insertCell();
-                headCell.innerHTML = key;
+                var head = key;
+                var formated_head = head.charAt(0).toUpperCase() + head.slice(1);
+                headCell.innerHTML = formated_head;
             }
             var tableBody = table.createTBody();
             resMsg.forEach(function (x) {

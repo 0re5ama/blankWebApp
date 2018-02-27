@@ -21,7 +21,7 @@ namespace BlankWebApp
             SqlCommand cmd = new SqlCommand(sp, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@name", SqlDbType.VarChar, 50).Value = ATTclassobj.name;
-            cmd.Parameters.Add("@gender", SqlDbType.Char, 1).Value = ATTclassobj.gender;
+            cmd.Parameters.Add("@gender", SqlDbType.VarChar, 1).Value = ATTclassobj.gender;
             cmd.Parameters.Add("@dob", SqlDbType.Date, 50).Value = ATTclassobj.dob;
             cmd.Parameters.Add("@address", SqlDbType.VarChar, 50).Value = ATTclassobj.address;
             cmd.Parameters.Add("@percentage", SqlDbType.Float, 50).Value = ATTclassobj.percentage;
