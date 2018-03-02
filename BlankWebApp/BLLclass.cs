@@ -25,5 +25,32 @@ namespace BlankWebApp
             return resMsg;
 
         }
+
+        public string getOne(int sn)
+        {
+            string resMsg = "";
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            DLLclass DLLclassobj = new DLLclass();
+            ATTclass ATTclassobj = DLLclassobj.getOne(sn);
+            resMsg = serializer.Serialize(ATTclassobj);
+            return resMsg;
+        }
+
+        public string deleteOne(int sn)
+        {
+            string resMsg = "";
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            DLLclass DLLclassobj = new DLLclass();
+            resMsg = DLLclassobj.deleteOne(sn);
+            return resMsg;
+        }
+
+        public string updateStudent(ATTclass ATTclassobj)
+        {
+            string msg = "";
+            DLLclass DLLclassobj = new DLLclass();
+            msg = DLLclassobj.update(ATTclassobj);
+            return msg;
+        }
     }
 }

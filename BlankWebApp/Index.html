@@ -4,6 +4,7 @@
     <title>Database example</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="Content/bootstrap.css" />
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <script type="text/javascript" src="Scripts/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="Scripts/knockout-3.4.2.js"></script>
     <script src="dbscript.js" type="text/javascript"></script>
@@ -26,6 +27,7 @@
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
                         <input type="text" id="name" class="form-control" />
+                        <span class="small text-danger" id="nameerr"></span>
                     </div>
                 </div>
                 <fieldset class="form-group">
@@ -33,13 +35,14 @@
                         <legend class="col-form-label col-sm-2">Gender</legend>
                         <div class="col-sm-10">
                             <div class="form-check">
-                                <input type="radio" id="male" name="gender" class="form-check-input" value="male" />
+                                <input type="radio" id="male" name="gender" class="form-check-input" value="M" />
                                 <label for="male" class="form-check-label">Male</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="female" name="gender" class="form-check-input" value="female" />
+                                <input type="radio" id="female" name="gender" class="form-check-input" value="F" />
                                 <label for="female" class="form-check-label">Female</label>
                             </div>
+                            <span class="small text-danger" id="generr"></span>
                         </div>
                     </div>
                 </fieldset>
@@ -47,12 +50,14 @@
                     <label for="dob" class="col-sm-2 col-form-label">DoB</label>
                     <div class="col-sm-10">
                         <input type="date" id="dob" class="form-control" />
+                        <span class="small text-danger" id="doberr"></span>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="address" class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
                         <input type="text" id="address" class="form-control" />
+                        <span class="small text-danger" id="adderr"></span>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -63,10 +68,14 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3">
-                        <button onclick="save()" class="btn btn-outline-primary">Save data</button>
+                        <button onclick="save()" class="btn btn-primary"><span class="fas fa-save">&nbsp</span>Save data</button>
                     </div>
                     <div class="col-sm-3">
-                        <button onclick="cleardata()" class="btn btn-outline-warning">Clear data</button>
+                        <button onclick="update()" class="btn btn-dark"><span class="fas fa-edit">&nbsp</span>Update data</button>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <button onclick="cleardata()" class="btn btn-warning"><span class="fas fa-eraser">&nbsp</span>Clear data</button>
                     </div>
                 </div>
             </form>
@@ -79,5 +88,10 @@
             </table>
         </div>
     </div>
+    <script>
+        $("button").click(function (event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>

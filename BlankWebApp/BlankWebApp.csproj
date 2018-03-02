@@ -170,7 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ATTclass.cs" />
+    <Compile Include="ATTmarks.cs" />
     <Compile Include="BLLclass.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="dbhandler.ashx.cs">
       <DependentUpon>dbhandler.ashx</DependentUpon>
     </Compile>
