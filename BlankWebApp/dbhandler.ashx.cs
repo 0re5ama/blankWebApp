@@ -15,6 +15,7 @@ namespace BlankWebApp
     {
         public string action { get; set; }
         public string data { get; set; }
+        public string mark { get; set; }
     }
     public class dbhandler : IHttpHandler
     {
@@ -22,8 +23,11 @@ namespace BlankWebApp
         public void ProcessRequest(HttpContext context)
         {
             string action = "";
+            string studRes = "";
+            string markRes = "";
             string resMsg = "";
             string data = "";
+            string mark = "";
             if(context.Request.HttpMethod == "GET")
             {
                 action = context.Request["action"].ToString();
@@ -35,11 +39,17 @@ namespace BlankWebApp
                 requestdata json_from_req = jss.Deserialize<requestdata>(data_from_req);
                 action = json_from_req.action;
                 data = json_from_req.data;
+                mark = json_from_req.mark;
             }
             switch (action)
             {
                 case "saveStudent":
                     resMsg = save(data);
+                    context.Response.ContentType = "text/plain";
+                    context.Response.Write(resMsg);
+                    break;
+                case "saveMark":
+                    resMsg = saveMark(data);
                     context.Response.ContentType = "text/plain";
                     context.Response.Write(resMsg);
                     break;
@@ -49,17 +59,27 @@ namespace BlankWebApp
                     context.Response.Write(resMsg);
                     break;
                 case "getOne":
-                    resMsg = getOne(data);
+                    studRes = getOne(data);
+                    markRes = getMark(data);
+                    string studResMod = studRes.Substring(0, studRes.Length - 1);
+                    string markResMod = markRes.Remove(0, 1);
+                    resMsg = studResMod + ", " + markResMod;
                     context.Response.ContentType = "application/json";
                     context.Response.Write(resMsg);
                     break;
                 case "deleteOne":
-                    resMsg = deleteOne(data);
+                    studRes = deleteOne(data);
+                    resMsg = studRes;
                     context.Response.ContentType = "text/plain";
                     context.Response.Write(resMsg);
                     break;
                 case "updateStudent":
-                    resMsg = updateRow(data);
+                    studRes = updateRow(data);
+                    markRes = updateMark(mark);
+                    if(markRes == "success")
+                    {
+                        resMsg = studRes;
+                    }
                     context.Response.ContentType = "text/plain";
                     context.Response.Write(resMsg);
                     break;
@@ -106,6 +126,37 @@ namespace BlankWebApp
             return updMsg;
         }
 
+        public string saveMark(string mark)
+        {
+            BLLmarks BLLmarkObj = new BLLmarks();
+            ATTmarks ATTmarkObj = jss.Deserialize<ATTmarks>(mark) as ATTmarks;
+            string msg = BLLmarkObj.saveMark(ATTmarkObj);
+            return msg;
+        }
+
+        public string getMark(string data)
+        {
+            int id = int.Parse(data);
+            BLLmarks BLLmarkObj = new BLLmarks();
+            string msg = BLLmarkObj.getMark(id);
+            return msg;
+        }
+
+        public string deleteMark(string data)
+        {
+            int id = int.Parse(data);
+            BLLmarks BLLmarkObj = new BLLmarks();
+            string msg = BLLmarkObj.deleteMark(id);
+            return msg;
+        }
+
+        public string updateMark(string mark)
+        {
+            BLLmarks BLLmarkObj = new BLLmarks();
+            ATTmarks ATTmarkObj = jss.Deserialize<ATTmarks>(mark) as ATTmarks;
+            string msg = BLLmarkObj.updateMark(ATTmarkObj);
+            return msg;
+        }
         public bool IsReusable
         {
             get

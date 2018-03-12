@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>View Model</title>
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <script type="text/javascript" src="Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/knockout-3.4.2.js"></script>
+    <script type="text/javascript" src="Scripts/studentViewModel.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-5">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: allStudent">
+                    <tr>
+                        <td data-bind="text: ($index() +1)"></td>
+                        <td data-bind="text: $data.name, click: $root.rowClicked.bind($data,$data.id)" style="cursor: pointer"></td>
+                        <td><a href="#" class="btn btn-sm btn-danger" data-bind="click: $root.delet.bind($data,$data.id)">delete</a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" data-bind="click: addData" style="cursor: pointer; text-align: center">Add</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5" data-bind="visible: showForm">
+            <form>
+                <div class="form-group row">
+                    <label for="id" class="col-sm-2 col-form-label">ID</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="id" class="form-control disabled" data-bind="value: koid" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="name" class="form-control" data-bind="value: koname" />
+                        <span class="small text-danger" id="nameerr"></span>
+                    </div>
+                </div>
+                <fieldset class="form-group">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2">Gender</legend>
+                        <div class="col-sm-10">
+                            <div class="form-check">
+                                <input type="radio" id="male" name="gender" class="form-check-input" value="M" data-bind="checked: kogender" />
+                                <label for="male" class="form-check-label">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="female" name="gender" class="form-check-input" value="F" data-bind="checked: kogender" />
+                                <label for="female" class="form-check-label">Female</label>
+                            </div>
+                            <span class="small text-danger" id="generr"></span>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-group row">
+                    <label for="dob" class="col-sm-2 col-form-label">DoB</label>
+                    <div class="col-sm-10">
+                        <input type="date" id="dob" class="form-control" data-bind="value: kodob" />
+                        <span class="small text-danger" id="doberr"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="address" class="form-control" data-bind="value: koaddress" />
+                        <span class="small text-danger" id="adderr"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="marks" class="col-sm-2 col-form-label">Marks</label>
+                    <div class="col-sm-10">
+                        <select data-bind
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="percentage" class="col-sm-2 col-form-label">Percentage</label>
+                    <div class="col-sm-10">
+                        <input type="number" min="0" max="100" step="any" id="percentage" class="form-control" data-bind="value: kopercentage, event: {onfocus: calcP}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" data-bind="enable: saveData, click: save"><span class="fas fa-save">&nbsp</span>Save data</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-dark" data-bind="enable: updateData, click: update"><span class="fas fa-edit">&nbsp</span>Update data</button>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-warning" data-bind="click: clear"><span class="fas fa-eraser">&nbsp</span>Clear data</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $("button").click(function (event) {
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

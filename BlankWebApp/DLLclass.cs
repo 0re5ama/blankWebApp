@@ -28,8 +28,8 @@ namespace BlankWebApp
             cmd.Parameters.Add("@id", SqlDbType.Int).Direction = ParameterDirection.Output;
             cmd.ExecuteNonQuery();
             int sid = Int32.Parse(cmd.Parameters["@id"].Value.ToString());
-            msg = "Saved successfully with id: " + sid;
             connection.Close();
+            msg = sid.ToString();
             return msg;
         }
 
@@ -88,6 +88,7 @@ namespace BlankWebApp
                 ATTclassobj.address = dataReader.GetString(4);
                 ATTclassobj.percentage = dataReader.GetDouble(5);
             }
+            connection.Close();
             return ATTclassobj;
         }
 
@@ -101,8 +102,11 @@ namespace BlankWebApp
             SqlCommand cmd = new SqlCommand(sp, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@id", SqlDbType.Int, 5).Value = sn;
+            DLLmarks DLLmarkObj = new DLLmarks();
+            string dllRes = DLLmarkObj.deleteMark(sn);
             cmd.ExecuteNonQuery();
-            msg = "success";
+            msg = dllRes;
+            connection.Close();
             return msg;
         }
 
@@ -123,7 +127,7 @@ namespace BlankWebApp
             cmd.Parameters.Add("@percentage", SqlDbType.Float, 50).Value = ATTclassobj.percentage;
             cmd.ExecuteNonQuery();
             int sid = ATTclassobj.id;
-            msg = "Updated successfully with id: " + sid;
+            msg = "Successfully updated with ID: " + sid;
             connection.Close();
             return msg;
         }

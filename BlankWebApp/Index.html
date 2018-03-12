@@ -60,10 +60,58 @@
                         <span class="small text-danger" id="adderr"></span>
                     </div>
                 </div>
+                <fieldset id="marks" class="form-group" style="display: none">
+                    <div class="row">
+                        <legend class="col-form-label col-sm-2">Marks</legend>
+                        <div class="col-sm-10">
+                            <div class="form-group row">
+                                <label for="math" class="col-sm-2 col-form-label">Qid</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="qid" class="form-control" disabled />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="math" class="col-sm-2 col-form-label">Math</label>
+                                <div class="col-sm-10">
+                                    <input type="number" min="0" max="100" step="any" id="math" class="form-control" />
+                                    <span class="small text-danger" id="matherr"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="science" class="col-sm-2 col-form-label">Science</label>
+                                <div class="col-sm-10">
+                                    <input type="number" min="0" max="100" step="any" id="science" class="form-control" />
+                                    <span class="small text-danger" id="scnerr"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="english" class="col-sm-2 col-form-label">English</label>
+                                <div class="col-sm-10">
+                                    <input type="number" min="0" max="100" step="any" id="english" class="form-control" />
+                                    <span class="small text-danger" id="engerr"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="social" class="col-sm-2 col-form-label">Social</label>
+                                <div class="col-sm-10">
+                                    <input type="number" min="0" max="100" step="any" id="social" class="form-control" />
+                                    <span class="small text-danger" id="socerr"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <p id="markLink" class="text-light" style="cursor: pointer" onclick=marksView()>Enter Marks</p>
+                    </div>
+                    <div id="collapse" class="col-sm-2" style="display: none"><span class="fas fa-minus-square" onclick="hide()"></span></div>
+                </div>
                 <div class="form-group row">
                     <label for="percentage" class="col-sm-2 col-form-label">Percentage</label>
                     <div class="col-sm-10">
-                        <input type="text" id="percentage" class="form-control" />
+                        <input type="number" min="0" max="100" step="any" id="percentage" class="form-control" onfocus="calcP()"/>
                     </div>
                 </div>
                 <div class="row">

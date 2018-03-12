@@ -114,6 +114,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\studentViewModel.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -166,17 +167,20 @@
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="test.html" />
     <Content Include="testJS.js" />
+    <Content Include="viewModel.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ATTclass.cs" />
     <Compile Include="ATTmarks.cs" />
     <Compile Include="BLLclass.cs" />
+    <Compile Include="BLLmarks.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="dbhandler.ashx.cs">
       <DependentUpon>dbhandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="DLLclass.cs" />
+    <Compile Include="DLLmarks.cs" />
     <Compile Include="Handler.ashx.cs">
       <DependentUpon>Handler.ashx</DependentUpon>
     </Compile>
