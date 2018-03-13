@@ -67,6 +67,14 @@ namespace BlankWebApp
                     context.Response.ContentType = "application/json";
                     context.Response.Write(resMsg);
                     break;
+                case "getOneStudent":
+                    studRes = getOne(data);
+                    markRes = getMark(data);
+                    string tempStud = studRes.Substring(0, studRes.Length - 1);
+                    resMsg = tempStud + ",\"marks\":" + markRes + '}';
+                    context.Response.ContentType = "application/json";
+                    context.Response.Write(resMsg);
+                    break;
                 case "deleteOne":
                     studRes = deleteOne(data);
                     resMsg = studRes;
